@@ -168,7 +168,7 @@ bar {
 }
 
 # Disable window titlebars entirely
-for_window [class="^.*"] border pixel 2
+for_window [class="^.*"] border pixel 1
 
 # Wallpaper
 exec --no-startup-id feh --bg-fill /home/n/Pictures/black.png
