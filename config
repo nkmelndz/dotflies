@@ -4,7 +4,7 @@
 # Should you change your keyboard layout some time, delete
 # this file and re-run i3-config-wizard(1).
 #
-
+exec_always setxkbmap -layout latam
 # i3 config file (v4)
 #
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
@@ -32,17 +32,19 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 exec --no-startup-id xinput --set-prop "SynPS/2 Synaptics TouchPad" "libinput Accel Speed" 0.4 
 exec --no-startup-id xinput --set-prop "SynPS/2 Synaptics TouchPad" "libinput Tapping Enabled" 1
 exec --no-startup-id xinput --set-prop "SynPS/2 Synaptics TouchPad" "libinput Scroll Method Enabled"  0, 0, 0  
-exec --no-startup-id xinput --set-prop "TPPS/2 IBM TrackPoint" "libinput Accel Speed" -0.65
-exec --no-startup-id xinput --set-prop "pointer:Logitech M350" "libinput Accel Speed" -0.35  
+exec --no-startup-id xinput --set-prop "TPPS/2 IBM TrackPoint" "libinput Accel Speed" -0.60
+exec_always --no-startup-id xinput --set-prop 9 "libinput Accel Speed" -0.5  
 
 #network manager
 exec --no-startup-id nm-applet
+
+exec --no-startup-id env LANG=es_PE.UTF-8
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec gnome-terminal
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -168,9 +170,10 @@ bar {
 }
 
 # Disable window titlebars entirely
-for_window [class="^.*"] border pixel 1
+for_window [class="^.*"] border pixel 2
 
-# Wallpaper
-exec --no-startup-id feh --bg-fill /home/n/Pictures/black.png
+#Wallpaper
+exec_always --no-startup-id feh --bg-scale ~/Pictures/wallpaper.jpg
 
-
+gaps inner 2
+gaps outer 1
