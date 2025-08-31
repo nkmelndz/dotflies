@@ -32,8 +32,11 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 exec --no-startup-id xinput --set-prop "SynPS/2 Synaptics TouchPad" "libinput Accel Speed" 0.4 
 exec --no-startup-id xinput --set-prop "SynPS/2 Synaptics TouchPad" "libinput Tapping Enabled" 1
 exec --no-startup-id xinput --set-prop "SynPS/2 Synaptics TouchPad" "libinput Scroll Method Enabled"  0, 0, 0  
-exec --no-startup-id xinput --set-prop "TPPS/2 IBM TrackPoint" "libinput Accel Speed" -0.60
+exec --no-startup-id xinput --set-prop "TPPS/2 IBM TrackPoint" "libinput Accel Speed" -0.50
 exec_always --no-startup-id xinput --set-prop 9 "libinput Accel Speed" -0.5  
+
+#fan control
+exec --no-startup-id echo "level 1" | sudo tee /proc/acpi/ibm/fan
 
 #network manager
 exec --no-startup-id nm-applet
@@ -45,6 +48,10 @@ floating_modifier $mod
 
 # start a terminal
 bindsym $mod+Return exec gnome-terminal
+
+# Bloquear SIEMPRE antes de suspender y al apagar pantalla
+exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock -n -c 000000
+exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock -c 04090e --nofork
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -175,5 +182,5 @@ for_window [class="^.*"] border pixel 2
 #Wallpaper
 exec_always --no-startup-id feh --bg-scale ~/Pictures/wallpaper.jpg
 
-gaps inner 2
+gaps inner 1
 gaps outer 1
